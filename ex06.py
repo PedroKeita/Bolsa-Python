@@ -17,7 +17,13 @@ def palindrome(texto):
 def troca_caixa(texto):
     '''Vogais ficam em caixa alta (maiúsculas)
     Consoantes ficam em caixa baixa (minúsculas)'''
-
+    novo_texto = ""
+    for caractere in texto:
+        if caractere.lower() in 'aeiou':
+            novo_texto += caractere.upper()
+        else:
+            novo_texto += caractere.lower()
+    return novo_texto
 
 
 def imprime_mes_por_extenso(data):
@@ -71,6 +77,8 @@ def numeros_sortudos(limite_inferior=1, limite_superior=100000):
 
 
 def ponteironuloville(telefones):
+    valid_count = count_valid_numbers(telefones)
+    return valid_count
     '''Na pacata vila campestre de Ponteironuloville, todos os telefones
     têm 6 dígitos. A companhia telefônica estabelece as seguintes regras
     sobre os números:
@@ -112,6 +120,49 @@ def ponteironuloville(telefones):
         Resposta: 39
     '''
 
+
+def is_valid(phone_number):
+    # Verifica se o último dígito é igual ao primeiro
+    if phone_number[0] == phone_number[-1]:
+        return False
+
+    # Verifica se há dígitos consecutivos idênticos
+    for i in range(len(phone_number) - 1):
+        if phone_number[i] == phone_number[i + 1]:
+            return False
+
+    # Verifica se a soma dos dígitos é par
+    digit_sum = sum(int(digit) for digit in phone_number)
+    if digit_sum % 2 != 0:
+        return False
+
+    return True
+
+
+def count_valid_numbers(phone_numbers):
+    count = 0
+    for number in phone_numbers:
+        if is_valid(number):
+            count += 1
+    return count
+
+
+# Lê os números de telefone do arquivo de texto
+def read_phone_numbers_from_file(filename):
+    with open(filename, 'r') as file:
+        phone_numbers = [line.strip() for line in file]
+    return phone_numbers
+
+
+# Nome do arquivo contendo os números de telefone
+input_filename = "telefones.txt"
+
+# Lê os números de telefone do arquivo
+phone_numbers = read_phone_numbers_from_file(input_filename)
+
+# Chama a função count_valid_numbers para contar os números de telefone válidos
+valid_count = count_valid_numbers(phone_numbers)
+print("Resposta:", valid_count)
 
 # Área de testes: só mexa aqui se souber o que está fazendo!
 acertos = 0
