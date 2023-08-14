@@ -3,8 +3,8 @@ def media_anual(temperaturas):
     e devolva uma lista com os números correspondentes aos meses que
     possuem temperatura superior á média anual.'''
     media_anual = sum(temperaturas) / len(temperaturas)
-    meses_superiores = [i for i, temp in enumerate(temperaturas) if temp > media_anual]
-    return meses_superiores
+    meses = [i for i, temp in enumerate(temperaturas) if temp > media_anual]
+    return meses
 
 
 def maiores_13(idades, alturas):
@@ -43,12 +43,12 @@ def lista_de_primos(inicio, fim):
     primos = []
     for num in range(inicio, fim+1):
         if num > 1:
-            is_prime = True
+            num_primo = True
             for i in range(2, int(num ** 0.5) + 1):
                 if num % i == 0:
-                    is_prime = False
+                    num_primo = False
                     break
-            if is_prime:
+            if num_primo:
                 primos.append(num)
     
     return primos
@@ -57,16 +57,16 @@ def lista_de_primos(inicio, fim):
 def Fibonacci(n):
     ''' Retorne uma lista com os n primeiros valores da série de Fibonacci.
     Fibonacci = 1,1,2,3,5,8,13,...'''
-    fibonacci_sequence = [1]
+    fibonacci_lista = [1]
     
     if n > 1:
-        fibonacci_sequence.append(1)
+        fibonacci_lista.append(1)
     
     for i in range(2, n):
-        next_fibonacci = fibonacci_sequence[-1] + fibonacci_sequence[-2]
-        fibonacci_sequence.append(next_fibonacci)
+        prox_fibonacci = fibonacci_lista[-1] + fibonacci_lista[-2]
+        fibonacci_lista.append(prox_fibonacci)
     
-    return fibonacci_sequence
+    return fibonacci_lista
 
 def altera_salarios(salarios):
     ''' Calcule o aumento de salário de acordo com a seguinte tabela:
