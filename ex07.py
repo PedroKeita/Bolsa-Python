@@ -5,6 +5,11 @@ def dormir(dia_semana, feriado):
     você pode ficar dormindo quando é feriado ou não é dia semana
     retorne True ou False conforme você vá dormir ou não
     """
+    # Verifica se é possível ficar dormindo
+    if not dia_semana or feriado:
+        return True
+    else:
+        return False
 
 def alunos_problema(a_sorri, b_sorri):
     """
@@ -13,6 +18,11 @@ def alunos_problema(a_sorri, b_sorri):
     temos problemas quando ambos estão sorrindo ou ambos não estão sorrindo
     retorne True quando houver problemas
     """
+    #verificar quando a e b ambos sorriem e quando ambos nao sorriem
+    if (a_sorri and b_sorri) or (not a_sorri and not b_sorri):
+        return True
+    else:
+        return False
 
 def soma_dobro(a, b):
     """
@@ -21,6 +31,11 @@ def soma_dobro(a, b):
     soma_dobro(1, 2) -> 3
     soma_dobro(2, 2) -> 8
     """
+    if a != b:
+        return a + b   
+    else:
+        return 2 * (a + b)
+    
 
 def diff21(n):
     """
@@ -30,6 +45,11 @@ def diff21(n):
     diff21(25) -> 8
     dica: abs(x) retorna o valor absoluto de x
     """
+    if n <= 21:
+        return abs(n - 21)
+    else:
+        return 2 * abs(n - 21)
+    
 
 def papagaio(falando, hora):
     """
@@ -37,12 +57,20 @@ def papagaio(falando, hora):
     hora é um parâmetro entre 0 e 23
     temos problemas se o papagaio estiver falando antes da 7 ou depois das 20
     """
-
+    if falando and (hora < 7 or hora > 20):
+        return True
+    else:
+        return False
+    
 def dez(a, b):
     """
     dados dois inteiros a e b
     retorna True se um dos dois é 10 ou a soma é 10
     """
+    if a == 10 or b == 10 or a + b == 10:
+        return True
+    else:
+        return False
 
 def dista10(n):
     """
@@ -53,7 +81,11 @@ def dista10(n):
     dista10(90) -> True
     dista10(89) -> False
     """
-
+    if abs(n - 100) <= 10 or abs(n - 200) <= 10:
+        return True
+    else:
+        return False
+    
 def apaga(s, n):
     """
     seja uma string s e um inteiro n
@@ -61,6 +93,11 @@ def apaga(s, n):
     apaga('kitten', 1) -> 'ktten'
     apaga('kitten', 4) -> 'kittn'
     """
+
+    if n < 0 or n >= len(s):
+        return s
+    else:
+        return s[:n] + s[n+1:]
 
 def troca(s):
     """
@@ -71,6 +108,14 @@ def troca(s):
     troca('a') -> 'a'
     troca('ab') -> 'ba'
     """
+    if len(s) <= 1:
+        return s
+    else:
+        primeira_letra = s[0]
+        ultima_letra = s[-1]
+        resto_da_string = s[1:-1]
+        nova_string = ultima_letra + resto_da_string + primeira_letra
+        return nova_string
 
 # Área de testes: só mexa aqui se souber o que está fazendo!
 acertos = 0
