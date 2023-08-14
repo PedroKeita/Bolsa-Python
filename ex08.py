@@ -2,6 +2,9 @@ def media_anual(temperaturas):
     '''Receba uma lista com as temperaturas médias de cada mês
     e devolva uma lista com os números correspondentes aos meses que
     possuem temperatura superior á média anual.'''
+    media_anual = sum(temperaturas) / len(temperaturas)
+    meses_superiores = [i for i, temp in enumerate(temperaturas) if temp > media_anual]
+    return meses_superiores
 
 
 def maiores_13(idades, alturas):
@@ -9,22 +12,61 @@ def maiores_13(idades, alturas):
     listas separadas e de igual comprimento.
     Calcule a media das alturas e retorne as alturas daqueles que possuem
     'idades' maior que 13 e altura inferior a media da turma'''
+    # Calcula a média das alturas
+    media_alturas = sum(alturas) / len(alturas)
+    
+    # Cria uma lista para armazenar as alturas dos que possuem idades maiores que 13
+    alturas_maiores_13 = []
+    
+    # Itera sobre os índices e valores das idades e alturas
+    for i, idade in enumerate(idades):
+        if idade > 13 and alturas[i] < media_alturas:
+            alturas_maiores_13.append(alturas[i])
+    
+    return alturas_maiores_13
 
 
 def media_saltos_lista(saltos):
     '''Receba uma lista com os saltos de um atleta e calcule a média dos
     seus saltos, sabendo que o melhor e o pior saltos são desconsiderados.'''
+    if len(saltos) < 3:
+        return None  
+    saltos.sort()
+    saltos = saltos[1:-1]
+    media = sum(saltos) / len(saltos)
+    return media
 
 
 def lista_de_primos(inicio, fim):
     '''Retorne uma lista de primos entre os valores informados, incluindo
     os limites'''
+    primos = []
+    for num in range(inicio, fim+1):
+        if num > 1:
+            is_prime = True
+            for i in range(2, int(num ** 0.5) + 1):
+                if num % i == 0:
+                    is_prime = False
+                    break
+            if is_prime:
+                primos.append(num)
+    
+    return primos
 
 
 def Fibonacci(n):
     ''' Retorne uma lista com os n primeiros valores da série de Fibonacci.
     Fibonacci = 1,1,2,3,5,8,13,...'''
-
+    fibonacci_sequence = [1]
+    
+    if n > 1:
+        fibonacci_sequence.append(1)
+    
+    for i in range(2, n):
+        next_fibonacci = fibonacci_sequence[-1] + fibonacci_sequence[-2]
+        fibonacci_sequence.append(next_fibonacci)
+    
+    return fibonacci_sequence
 
 def altera_salarios(salarios):
     ''' Calcule o aumento de salário de acordo com a seguinte tabela:
@@ -35,6 +77,24 @@ def altera_salarios(salarios):
     Salário mínimo para referência: R$ 724,00
     Retorna a lista com os salários alterados
     '''
+
+    salario_minimo = 724.00
+    salarios_alterados = []
+
+    for salario in salarios:
+        if salario <= salario_minimo:
+            novo_salario = salario * 1.20
+        elif salario <= 2 * salario_minimo:
+            novo_salario = salario * 1.15
+        elif salario <= 5 * salario_minimo:
+            novo_salario = salario * 1.10
+        else:
+            novo_salario = salario * 1.05
+        
+        salarios_alterados.append(round(novo_salario, 2))
+
+    return salarios_alterados
+    
 
 
 # Área de testes: só mexa aqui se souber o que está fazendo!
